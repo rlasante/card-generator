@@ -16,6 +16,18 @@ function switchCard(cardIndex) {
   _currentCard = cardIndex;
 }
 
+function removeCard(card) {
+  var cardIndex = _data.indexOf(card);
+  // Remove the card
+  _data.splice(cardIndex,1);
+  // Switch if the card we removed was infront of or was the current card
+  if (cardIndex <= _currentCard && !(_currentCard <= 0)) {
+    // We want to switch the current card
+    switchCard(_currentCard-1)
+  }
+
+}
+
 // Facebook style store creation.
 var CardDataStore = assign({}, EventEmitter.prototype, {
 
@@ -81,6 +93,15 @@ var CardDataStore = assign({}, EventEmitter.prototype, {
       case Constants.ActionTypes.EXPORT_CARDS:
         console.warn("Exporting the cards isn't supported yet");
         break;
+
+      case Constants.ActionTypes.REMOVE_CARD:
+        console.warn("Removing this card")
+        var card = action.card;
+        if (card !== undefined)
+        {
+          removeCard(card);
+          CardDataStore.emitChange();
+        }
 
       // add more cases for other actionTypes...
     }

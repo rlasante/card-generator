@@ -29,6 +29,12 @@ module.exports = {
       type:Constants.ActionTypes.SWITCH_CARD,
       card: card
     });
+  },
+  removeCard: function(card) {
+    AppDispatcher.handleViewAction({
+      type:Constants.ActionTypes.REMOVE_CARD,
+      card: card
+    });
   }
 
 };
