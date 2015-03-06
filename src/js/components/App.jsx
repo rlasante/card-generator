@@ -3,11 +3,15 @@ var DataStore = require('../stores/DataStore');
 var ActionCreator = require('../actions/DataActionCreators');
 var CardActionCreator = require('../actions/CardActionCreators');
 var Button = require('react-bootstrap/Button');
+var Grid = require('react-bootstrap/Grid');
+var Row = require('react-bootstrap/Row');
+var Col = require('react-bootstrap/Col');
 var Jumbotron = require('react-bootstrap/Jumbotron');
 var TaskList = require('./TaskList.jsx');
 var CardDataStore = require('../stores/CardDataStore')
 var Card = require('./Card.jsx')
 var CardSelector = require('./CardSelector.jsx')
+var FilterComponent = require('./FilterComponent.jsx')
 
 var App = React.createClass({
 
@@ -78,16 +82,19 @@ var App = React.createClass({
             Most features are left unimplemented with clues to guide you on the learning process.
           </p>
         </Jumbotron>
-
-        <p>Card Title: {this.state.currentCard ? this.state.currentCard.title : ''} </p>
-        <Card card={this.state.currentCard} />
-        <Button onClick={this.handleAddNewCardClick}>Add New Card</Button>
-        <CardSelector/>
-
-        <TaskList tasks={this.state.tasks} />
-
-        <Button onClick={this.handleAddNewTaskClick} bsStyle="primary">Add New Task</Button>
-        <Button onClick={this.handleClearTaskListClick} bsStyle="danger">Clear Task List</Button>
+        <Grid>
+          <Row>
+            <Col md={2}>
+              <FilterComponent />
+            </Col>
+            <Col md={8}>
+              <p>Card Title: {this.state.currentCard ? this.state.currentCard.title : ''} </p>
+              <Card card={this.state.currentCard} />
+              <Button onClick={this.handleAddNewCardClick}>Add New Card</Button>
+              <CardSelector/>
+            </Col>
+          </Row>
+        </Grid>
       </div>
     );
   }

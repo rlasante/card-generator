@@ -67,8 +67,10 @@ var CardDataStore = assign({}, EventEmitter.prototype, {
         }
         break;
       case Constants.ActionTypes.SWITCH_CARD:
-        switchCard(action.card);
-        CardDataStore.emitChange();
+        if(action.card !== _currentCard) {
+          switchCard(action.card);
+          CardDataStore.emitChange();
+        }
         break;
 
       case Constants.ActionTypes.CLEAR_CARDS:

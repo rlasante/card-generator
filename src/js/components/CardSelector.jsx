@@ -40,7 +40,8 @@ var CardSelector = React.createClass({
 
   render: function() {
     return (
-      <Button onClick={this.handleToggle} bsStyle="primary">Select Card</Button>
+      <Button onClick={this.state.cards.length === 0 ? null : this.handleToggle}
+        bsStyle={this.state.cards.length == 0 ? "danger" :"primary"}>Select Card</Button>
     );
   },
 
@@ -48,6 +49,8 @@ var CardSelector = React.createClass({
     this.setState({
       isModalOpen: !this.state.isModalOpen
     });
+    //if (this.refs.cardSelectionInput)
+    //  this.refs.cardSelectionInput.getInputDOMNode().focus();
   },
 
   onSelect: function(event) {
@@ -71,6 +74,7 @@ var CardSelector = React.createClass({
             default={this.state.currentSelection}
             value={this.state.currentSelection}
             onChange={this.onSelect}
+            autofocus="true"
             >
             {this.state.cards.map(card =>
                 <option value={this.state.cards.indexOf(card)}>{card.title}</option>

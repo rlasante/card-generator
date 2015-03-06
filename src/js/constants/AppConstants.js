@@ -8,7 +8,11 @@ module.exports = {
     ADD_TASK: null,
     ADD_CARD: null,
     CLEAR_CARDS: null,
+    CLEAR_FILTER: null,
     EXPORT_CARDS: null,
+    PUT_FILTER: null,
+    REMOVE_CARD: null,
+    SET_CURRENT_FILTER: null,
     SWITCH_CARD: null
   }),
 
